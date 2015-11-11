@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianyi.yw.dao.TicketMapper" >
+  <resultMap id="BaseResultMap" type="com.tianyi.yw.model.Ticket" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TYPE_KEY" property="typeKey" jdbcType="VARCHAR" />
+    <result column="TICKET_NUMBER" property="ticketNumber" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="SUMMARY" property="summary" jdbcType="VARCHAR" />
+    <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="SOURCE_ID" property="sourceId" jdbcType="INTEGER" />
+    <result column="POINT_ID" property="pointId" jdbcType="INTEGER" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
+    <result column="CLIENT_PHONE" property="clientPhone" jdbcType="VARCHAR" />
+    <result column="MESSAGE_SEND" property="messageSend" jdbcType="INTEGER" />
+    <result column="HANDLE_HOUR" property="handleHour" jdbcType="VARCHAR" />
+    <result column="INTO_STORE" property="intoStore" jdbcType="INTEGER" />
+    <result column="ALERT_STATUS" property="alertStatus" jdbcType="INTEGER" />
+    <result column="ALERT_COMMENT" property="alertComment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TYPE_KEY, TICKET_NUMBER, USER_ID, CREATE_TIME, SUMMARY, COMMENT, STATUS, UPDATE_TIME, 
+    SOURCE_ID, POINT_ID, PROJECT_ID, CLIENT_PHONE, MESSAGE_SEND, HANDLE_HOUR, INTO_STORE, 
+    ALERT_STATUS, ALERT_COMMENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ticket
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ticket
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianyi.yw.model.Ticket" keyProperty="id" useGeneratedKeys="true">
+    insert into t_ticket (ID, TYPE_KEY, TICKET_NUMBER, 
+      USER_ID, CREATE_TIME, SUMMARY, 
+      COMMENT, STATUS, UPDATE_TIME, 
+      SOURCE_ID, POINT_ID, PROJECT_ID, 
+      CLIENT_PHONE, MESSAGE_SEND, HANDLE_HOUR, 
+      INTO_STORE, ALERT_STATUS, ALERT_COMMENT
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeKey,jdbcType=VARCHAR}, #{ticketNumber,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{summary,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{sourceId,jdbcType=INTEGER}, #{pointId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{clientPhone,jdbcType=VARCHAR}, #{messageSend,jdbcType=INTEGER}, #{handleHour,jdbcType=VARCHAR}, 
+      #{intoStore,jdbcType=INTEGER}, #{alertStatus,jdbcType=INTEGER}, #{alertComment,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianyi.yw.model.Ticket" >
+    insert into t_ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="typeKey != null" >
+        TYPE_KEY,
+      </if>
+      <if test="ticketNumber != null" >
+        TICKET_NUMBER,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="summary != null" >
+        SUMMARY,
+      </if>
+      <if test="comment != null" >
+        COMMENT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="sourceId != null" >
+        SOURCE_ID,
+      </if>
+      <if test="pointId != null" >
+        POINT_ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="clientPhone != null" >
+        CLIENT_PHONE,
+      </if>
+      <if test="messageSend != null" >
+        MESSAGE_SEND,
+      </if>
+      <if test="handleHour != null" >
+        HANDLE_HOUR,
+      </if>
+      <if test="intoStore != null" >
+        INTO_STORE,
+      </if>
+      <if test="alertStatus != null" >
+        ALERT_STATUS,
+      </if>
+      <if test="alertComment != null" >
+        ALERT_COMMENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeKey != null" >
+        #{typeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNumber != null" >
+        #{ticketNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="pointId != null" >
+        #{pointId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="clientPhone != null" >
+        #{clientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="messageSend != null" >
+        #{messageSend,jdbcType=INTEGER},
+      </if>
+      <if test="handleHour != null" >
+        #{handleHour,jdbcType=VARCHAR},
+      </if>
+      <if test="intoStore != null" >
+        #{intoStore,jdbcType=INTEGER},
+      </if>
+      <if test="alertStatus != null" >
+        #{alertStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alertComment != null" >
+        #{alertComment,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianyi.yw.model.Ticket" >
+    update t_ticket
+    <set >
+      <if test="typeKey != null" >
+        TYPE_KEY = #{typeKey,jdbcType=VARCHAR},
+      </if>
+      <if test="ticketNumber != null" >
+        TICKET_NUMBER = #{ticketNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="summary != null" >
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        COMMENT = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceId != null" >
+        SOURCE_ID = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="pointId != null" >
+        POINT_ID = #{pointId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="clientPhone != null" >
+        CLIENT_PHONE = #{clientPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="messageSend != null" >
+        MESSAGE_SEND = #{messageSend,jdbcType=INTEGER},
+      </if>
+      <if test="handleHour != null" >
+        HANDLE_HOUR = #{handleHour,jdbcType=VARCHAR},
+      </if>
+      <if test="intoStore != null" >
+        INTO_STORE = #{intoStore,jdbcType=INTEGER},
+      </if>
+      <if test="alertStatus != null" >
+        ALERT_STATUS = #{alertStatus,jdbcType=INTEGER},
+      </if>
+      <if test="alertComment != null" >
+        ALERT_COMMENT = #{alertComment,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianyi.yw.model.Ticket" >
+    update t_ticket
+    set TYPE_KEY = #{typeKey,jdbcType=VARCHAR},
+      TICKET_NUMBER = #{ticketNumber,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      SUMMARY = #{summary,jdbcType=VARCHAR},
+      COMMENT = #{comment,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      SOURCE_ID = #{sourceId,jdbcType=INTEGER},
+      POINT_ID = #{pointId,jdbcType=INTEGER},
+      PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      CLIENT_PHONE = #{clientPhone,jdbcType=VARCHAR},
+      MESSAGE_SEND = #{messageSend,jdbcType=INTEGER},
+      HANDLE_HOUR = #{handleHour,jdbcType=VARCHAR},
+      INTO_STORE = #{intoStore,jdbcType=INTEGER},
+      ALERT_STATUS = #{alertStatus,jdbcType=INTEGER},
+      ALERT_COMMENT = #{alertComment,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

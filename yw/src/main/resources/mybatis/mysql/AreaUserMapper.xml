@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianyi.yw.dao.AreaUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tianyi.yw.model.AreaUser" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="AREA_ID" property="areaId" jdbcType="INTEGER" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="INTEGER" />
+    <result column="USER_ID" property="userId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="INTEGER" />
+    <result column="CREATET_TIME" property="createtTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA_ID, PROJECT_ID, USER_ID, CREATE_USER, CREATET_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_area_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_area_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianyi.yw.model.AreaUser" >
+    insert into p_area_user (ID, AREA_ID, PROJECT_ID, 
+      USER_ID, CREATE_USER, CREATET_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, #{createtTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianyi.yw.model.AreaUser" >
+    insert into p_area_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="areaId != null" >
+        AREA_ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createtTime != null" >
+        CREATET_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createtTime != null" >
+        #{createtTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianyi.yw.model.AreaUser" >
+    update p_area_user
+    <set >
+      <if test="areaId != null" >
+        AREA_ID = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createtTime != null" >
+        CREATET_TIME = #{createtTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianyi.yw.model.AreaUser" >
+    update p_area_user
+    set AREA_ID = #{areaId,jdbcType=INTEGER},
+      PROJECT_ID = #{projectId,jdbcType=INTEGER},
+      USER_ID = #{userId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=INTEGER},
+      CREATET_TIME = #{createtTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

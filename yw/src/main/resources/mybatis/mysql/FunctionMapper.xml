@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianyi.yw.dao.FunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.tianyi.yw.model.Function" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="SORT" property="sort" jdbcType="INTEGER" />
+    <result column="FLAG" property="flag" jdbcType="INTEGER" />
+    <result column="SERIAL_CODE" property="serialCode" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="CSS_CODE" property="cssCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    f.ID, f.NAME, f.URL, f.SORT, f.FLAG, f.SERIAL_CODE, f.PARENT_ID, f.CSS_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_function f
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from u_function
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianyi.yw.model.Function" >
+    insert into u_function (ID, NAME, URL, 
+      SORT, FLAG, SERIAL_CODE, 
+      PARENT_ID, CSS_CODE)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{serialCode,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{cssCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianyi.yw.model.Function" >
+    insert into u_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="sort != null" >
+        SORT,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="serialCode != null" >
+        SERIAL_CODE,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="cssCode != null" >
+        CSS_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="serialCode != null" >
+        #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="cssCode != null" >
+        #{cssCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianyi.yw.model.Function" >
+    update u_function
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        SORT = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="serialCode != null" >
+        SERIAL_CODE = #{serialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="cssCode != null" >
+        CSS_CODE = #{cssCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianyi.yw.model.Function" >
+    update u_function
+    set NAME = #{name,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=INTEGER},
+      FLAG = #{flag,jdbcType=INTEGER},
+      SERIAL_CODE = #{serialCode,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=INTEGER},
+      CSS_CODE = #{cssCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getFunctionByParentId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_function f
+    where f.PARENT_ID = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

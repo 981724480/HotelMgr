@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianyi.yw.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.tianyi.yw.model.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="ROLE_KEY" property="roleKey" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="INTEGER" />
+    <result column="FLAG" property="flag" jdbcType="INTEGER" />
+    <result column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="SIGN_STATUS" property="signStatus" jdbcType="INTEGER" />
+    <result column="SIGN_TIME" property="signTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    u.ID, u.NAME, u.COMPANY_ID, u.SEX, u.PHONE, u.EMAIL, u.POST, u.ROLE_KEY, u.CREATE_TIME, u.CREATE_USER, 
+    u.FLAG, u.DELETE_TIME, u.LOGO, u.ACCOUNT, u.PASSWORD, u.SALT, u.SIGN_STATUS, u.SIGN_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_user u
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from u_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianyi.yw.model.User" >
+		<selectKey resultType="INTEGER" keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+    insert into u_user (ID, NAME, COMPANY_ID, 
+      SEX, PHONE, EMAIL, 
+      POST, ROLE_KEY, CREATE_TIME, 
+      CREATE_USER, FLAG, DELETE_TIME, 
+      LOGO, ACCOUNT, PASSWORD, 
+      SALT, SIGN_STATUS, SIGN_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{roleKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{logo,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{signStatus,jdbcType=INTEGER}, #{signTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianyi.yw.model.User" >
+    insert into u_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="post != null" >
+        POST,
+      </if>
+      <if test="roleKey != null" >
+        ROLE_KEY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+      <if test="signStatus != null" >
+        SIGN_STATUS,
+      </if>
+      <if test="signTime != null" >
+        SIGN_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="roleKey != null" >
+        #{roleKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signStatus != null" >
+        #{signStatus,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null" >
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianyi.yw.model.User" >
+    update u_user
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        POST = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="roleKey != null" >
+        ROLE_KEY = #{roleKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="signStatus != null" >
+        SIGN_STATUS = #{signStatus,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null" >
+        SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianyi.yw.model.User" >
+    update u_user
+    set NAME = #{name,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=INTEGER},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      POST = #{post,jdbcType=VARCHAR},
+      ROLE_KEY = #{roleKey,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=INTEGER},
+      FLAG = #{flag,jdbcType=INTEGER},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      SIGN_STATUS = #{signStatus,jdbcType=INTEGER},
+      SIGN_TIME = #{signTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <resultMap id="QueryResultMap" type="com.tianyi.yw.model.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="ROLE_KEY" property="roleKey" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="INTEGER" />
+    <result column="FLAG" property="flag" jdbcType="INTEGER" />
+    <result column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="SIGN_STATUS" property="signStatus" jdbcType="INTEGER" />
+    <result column="SIGN_TIME" property="signTime" jdbcType="TIMESTAMP" />
+   
+    <!-- 其他表需求展示的字段 -->
+    <result column="COMPANYNAME" property="companyName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getUserById" resultMap="QueryResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_user u
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getUserByName" resultMap="QueryResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_user u
+    where ACCOUNT = #{account,jdbcType=INTEGER} and flag = 0
+  </select>
+  
+  
+  
+  <sql id="query_sql">
+  		from u_user u left join u_company c on u.COMPANY_ID = c.id
+  		where 1=1
+  	  <if test="name != null and name != ''" >
+        and u.NAME like CONCAT(#{name},'%')
+      </if>
+      <if test="companyId != null" >
+        and u.COMPANY_ID = #{companyId,jdbcType=INTEGER}
+      </if>
+      <if test="sex != null" >
+        and u.SEX = #{sex,jdbcType=INTEGER}
+      </if>
+      <if test="phone != null" >
+        and u.PHONE = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        and u.EMAIL = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="post != null" >
+        and u.POST = #{post,jdbcType=VARCHAR}
+      </if>
+      <if test="roleKey != null" >
+        and u.ROLE_KEY = #{roleKey,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and u.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >
+        and u.CREATE_USER = #{createUser,jdbcType=INTEGER}
+      </if>
+      <if test="flag != null" >
+        and u.FLAG = #{flag,jdbcType=INTEGER}
+      </if>
+      <if test="deleteTime != null" >
+        and u.DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="logo != null" >
+        and u.LOGO = #{logo,jdbcType=VARCHAR}
+      </if>
+      <if test="account != null" >
+        and u.ACCOUNT = #{account,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        and u.PASSWORD = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="salt != null" >
+        and u.SALT = #{salt,jdbcType=VARCHAR}
+      </if>
+      <if test="signStatus != null" >
+        and u.SIGN_STATUS = #{signStatus,jdbcType=INTEGER}
+      </if>
+      <if test="signTime != null" >
+        and u.SIGN_TIME = #{signTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="searchName != null and searchName !=''" >
+        and u.NAME like CONCAT('%',#{searchName,jdbcType=VARCHAR},'%')
+      </if>
+  		order by u.CREATE_TIME
+  </sql>
+  <select id="getUserPageList" resultMap="QueryResultMap" parameterType="com.tianyi.yw.model.User" >
+     select <include refid="Base_Column_List" />,c.name as COMPANYNAME
+	  		<include refid="query_sql"/>
+    <if test="pageStart != null and pageSize != null and pageStart>-1 and pageSize>-1">
+        limit #{pageStart}, #{pageSize}
+    </if>
+  </select>
+  
+     
+  <select id="getUserPageListCount" resultType="java.lang.Integer" parameterType="com.tianyi.yw.model.User" >
+    select count(*) <include refid="query_sql"/>
+  </select>
+</mapper>

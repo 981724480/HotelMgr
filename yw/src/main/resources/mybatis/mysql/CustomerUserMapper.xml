@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianyi.yw.dao.CustomerUserMapper" >
+  <resultMap id="BaseResultMap" type="com.tianyi.yw.model.CustomerUser" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CLIENT_COMPANY_ID" property="clientCompanyId" jdbcType="INTEGER" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="POST" property="post" jdbcType="VARCHAR" />
+    <result column="CLIENT_MANAGER" property="clientManager" jdbcType="VARCHAR" />
+    <result column="CLIENT_MANAGER_PHONE" property="clientManagerPhone" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="INTEGER" />
+    <result column="FLAG" property="flag" jdbcType="INTEGER" />
+    <result column="DELETE_TIME" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="LOGO" property="logo" jdbcType="VARCHAR" />
+    <result column="FIRST_TIME" property="firstTime" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, CLIENT_COMPANY_ID, SEX, PHONE, EMAIL, POST, CLIENT_MANAGER, CLIENT_MANAGER_PHONE, 
+    CREATE_TIME, CREATE_USER, FLAG, DELETE_TIME, LOGO, FIRST_TIME, ACCOUNT, PASSWORD, 
+    SALT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tianyi.yw.model.CustomerUser" >
+    insert into c_user (ID, NAME, CLIENT_COMPANY_ID, 
+      SEX, PHONE, EMAIL, 
+      POST, CLIENT_MANAGER, CLIENT_MANAGER_PHONE, 
+      CREATE_TIME, CREATE_USER, FLAG, 
+      DELETE_TIME, LOGO, FIRST_TIME, 
+      ACCOUNT, PASSWORD, SALT
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{clientCompanyId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{post,jdbcType=VARCHAR}, #{clientManager,jdbcType=VARCHAR}, #{clientManagerPhone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, #{flag,jdbcType=INTEGER}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{logo,jdbcType=VARCHAR}, #{firstTime,jdbcType=TIMESTAMP}, 
+      #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tianyi.yw.model.CustomerUser" >
+    insert into c_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="clientCompanyId != null" >
+        CLIENT_COMPANY_ID,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="post != null" >
+        POST,
+      </if>
+      <if test="clientManager != null" >
+        CLIENT_MANAGER,
+      </if>
+      <if test="clientManagerPhone != null" >
+        CLIENT_MANAGER_PHONE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME,
+      </if>
+      <if test="logo != null" >
+        LOGO,
+      </if>
+      <if test="firstTime != null" >
+        FIRST_TIME,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="clientCompanyId != null" >
+        #{clientCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="clientManager != null" >
+        #{clientManager,jdbcType=VARCHAR},
+      </if>
+      <if test="clientManagerPhone != null" >
+        #{clientManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTime != null" >
+        #{firstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tianyi.yw.model.CustomerUser" >
+    update c_user
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="clientCompanyId != null" >
+        CLIENT_COMPANY_ID = #{clientCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="post != null" >
+        POST = #{post,jdbcType=VARCHAR},
+      </if>
+      <if test="clientManager != null" >
+        CLIENT_MANAGER = #{clientManager,jdbcType=VARCHAR},
+      </if>
+      <if test="clientManagerPhone != null" >
+        CLIENT_MANAGER_PHONE = #{clientManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logo != null" >
+        LOGO = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="firstTime != null" >
+        FIRST_TIME = #{firstTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tianyi.yw.model.CustomerUser" >
+    update c_user
+    set NAME = #{name,jdbcType=VARCHAR},
+      CLIENT_COMPANY_ID = #{clientCompanyId,jdbcType=INTEGER},
+      SEX = #{sex,jdbcType=INTEGER},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      POST = #{post,jdbcType=VARCHAR},
+      CLIENT_MANAGER = #{clientManager,jdbcType=VARCHAR},
+      CLIENT_MANAGER_PHONE = #{clientManagerPhone,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=INTEGER},
+      FLAG = #{flag,jdbcType=INTEGER},
+      DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP},
+      LOGO = #{logo,jdbcType=VARCHAR},
+      FIRST_TIME = #{firstTime,jdbcType=TIMESTAMP},
+      ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <sql id="query_sql">
+  		from c_user  where
+  		1 = 1
+  	  <if test="name != null and name != ''" >
+        and NAME like CONCAT(#{name},'%')
+      </if> 
+      <if test="clientCompanyId != null" >
+        and CLIENT_COMPANY_ID = #{clientCompanyId,jdbcType=INTEGER}
+      </if>
+      <if test="sex != null" >
+        and SEX = #{sex,jdbcType=INTEGER}
+      </if>
+      <if test="phone != null" >
+        and PHONE = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        and EMAIL = #{email,jdbcType=VARCHAR}
+      </if>
+      <if test="post != null" >
+        and POST = #{post,jdbcType=VARCHAR}
+      </if>
+      <if test="clientManager != null" >
+        and CLIENT_MANAGER = #{clientManager,jdbcType=VARCHAR}
+      </if>
+      <if test="clientManagerPhone != null" >
+        and CLIENT_MANAGER_PHONE = #{clientManagerPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createUser != null" >
+        and CREATE_USER = #{createUser,jdbcType=INTEGER}
+      </if>
+      <if test="flag != null" >
+        and FLAG = #{flag,jdbcType=INTEGER}
+      </if>
+      <if test="deleteTime != null" >
+        and DELETE_TIME = #{deleteTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="logo != null" >
+        and LOGO = #{logo,jdbcType=VARCHAR}
+      </if>
+      <if test="firstTime != null" >
+        and FIRST_TIME = #{firstTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="account != null" >
+        and ACCOUNT = #{account,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null" >
+        and PASSWORD = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="salt != null" >
+        and SALT = #{salt,jdbcType=VARCHAR}
+      </if>
+      <if test="searchName != null and searchName !=''" >
+        and NAME like CONCAT('%',#{searchName,jdbcType=VARCHAR},'%')
+      </if>
+  		order by CREATE_TIME
+  </sql>
+  <select id="getCustomerUserPageList" resultMap="BaseResultMap" parameterType="com.tianyi.yw.model.CustomerUser" >
+     select <include refid="Base_Column_List" />
+	  		<include refid="query_sql"/>
+    <if test="pageStart != null and pageSize != null and pageStart>-1 and pageSize>-1">
+        limit #{pageStart}, #{pageSize}
+    </if>
+  </select>
+  
+     
+  <select id="getCustomerUserPageListCount" resultType="java.lang.Integer" parameterType="com.tianyi.yw.model.CustomerUser" >
+    select count(*) <include refid="query_sql"/>
+  </select>
+</mapper>
